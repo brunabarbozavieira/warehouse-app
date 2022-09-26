@@ -17,7 +17,7 @@ describe 'Usuário vê detalhes de um galpão' do
   end
 
   it 'e volta para a tela inicial' do 
-    Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
+    Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
                      address: 'Avenida do Aeroporto, 1000', cep:'15000000', 
                      description: 'Galpão destinado para cargas internacionais')
     
@@ -25,7 +25,6 @@ describe 'Usuário vê detalhes de um galpão' do
     click_on('Aeroporto SP')
     click_on('Voltar')
 
-    expect(current_path).to eq(root_path)
-
+    expect(current_url).to eq(root_url)
   end
 end

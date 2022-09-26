@@ -94,7 +94,7 @@ RSpec.describe Warehouse, type: :model do
       expect(warehouse.valid?).to eq false
     end
   end
-  context 'número' do
+  context 'apenas números' do
     it 'falso quando cep for diferente de número' do 
 
       warehouse = Warehouse.new(name:'Galpão do Rio', code:'RIO', city:'Rio de Janeiro', area:'40_000', 
