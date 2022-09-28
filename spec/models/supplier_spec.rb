@@ -39,7 +39,7 @@ RSpec.describe Supplier, type: :model do
       expect(supplier.valid?).to eq false
     end
 
-    it 'falso quando CNPJ for memor que 14 caracteres' do 
+    it 'falso quando CNPJ for menor que 14 caracteres' do 
       supplier = Supplier.new(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '4673498764019', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
 
       expect(supplier.valid?).to eq false
