@@ -2,9 +2,11 @@ require 'rails_helper'
 
 describe 'Usuário cadastra um modelo de produto' do 
   it 'com sucesso' do 
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
     supplier = Supplier.create!(corporate_name: 'Samsung Eletronics LTDA', brand_name: 'Samsung', registration_number: '46734987000198', full_address: 'Av Nações Unidas, 100', city: 'São Paulo', state: 'SP', email: 'sac@samsung.com')
     other_supplier = Supplier.create!(corporate_name: 'LG do Brasil LTDA', brand_name: 'LG', registration_number: '18776688000150', full_address: 'Av Ibirapuera, 300', city: 'São Paulo', state: 'SP', email: 'contato@lg.com')
 
+    login_as(user)
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar Novo'
@@ -25,9 +27,11 @@ describe 'Usuário cadastra um modelo de produto' do
     expect(page).to have_content 'Peso: 8000g'
   end
 
-  it 'com dados incompletos' do 
+  it 'com dados incompletos' do
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João') 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletronics LTDA', brand_name: 'Samsung', registration_number: '46734987000198', full_address: 'Av Nações Unidas, 100', city: 'São Paulo', state: 'SP', email: 'sac@samsung.com')
 
+    login_as(user)
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar Novo'

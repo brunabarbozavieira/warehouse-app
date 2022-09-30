@@ -2,8 +2,10 @@ require 'rails_helper'
 
 describe 'Usuário edita um fornecedor' do 
   it 'a partir da página de detalhes' do
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
     Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '46734987640198', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
 
+    login_as(user)
     visit root_path
     within 'nav' do
       click_on 'Fornecedores'
@@ -22,8 +24,10 @@ describe 'Usuário edita um fornecedor' do
   end
 
   it 'com sucesso' do 
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
     Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '37856483027154', full_address: 'Torre da Industria, 38', city: 'Teresina', state: 'PI', email: 'venda@spark.com')
 
+    login_as(user)
     visit root_path
     within 'nav' do
       click_on 'Fornecedores'
@@ -47,8 +51,10 @@ describe 'Usuário edita um fornecedor' do
   end
 
   it 'e matém os campos obrigatórios' do 
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
     Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '37856483027154', full_address: 'Torre da Industria, 38', city: 'Teresina', state: 'PI', email: 'venda@spark.com')
 
+    login_as(user)
     visit root_path
     within 'nav' do
       click_on 'Fornecedores'

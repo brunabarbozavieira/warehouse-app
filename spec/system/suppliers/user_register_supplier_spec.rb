@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'Usuário cadastra um fornecedor' do 
   it 'a partir do menu' do
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
+
+    login_as(user)
     visit root_path
     within 'nav' do 
       click_on 'Fornecedores'
@@ -18,6 +21,9 @@ describe 'Usuário cadastra um fornecedor' do
   end
 
   it 'com sucesso' do 
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
+
+    login_as(user)
     visit root_path
     within 'nav' do 
       click_on 'Fornecedores'
@@ -40,6 +46,9 @@ describe 'Usuário cadastra um fornecedor' do
   end
 
   it 'com dados incompletos' do 
+    user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
+
+    login_as(user)
     visit root_path
     within 'nav' do 
       click_on 'Fornecedores'

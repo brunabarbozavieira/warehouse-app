@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário se inscreve' do
   it 'com sucesso' do 
-    visit root_path
-    click_on 'Entrar'
+    visit new_user_session_url
     click_on 'Criar uma conta'
     fill_in 'Nome', with: 'Maria'
     fill_in 'E-mail', with: 'maria@email.com'
