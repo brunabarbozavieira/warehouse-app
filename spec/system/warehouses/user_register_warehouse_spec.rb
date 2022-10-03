@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra um galpão' do 
+  it 'e deve estar autenticado' do 
+    visit new_warehouse_url
+  
+    expect(current_url).to eq new_user_session_url
+  end
+  
   it 'a partir da tela inicial' do 
     user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
 

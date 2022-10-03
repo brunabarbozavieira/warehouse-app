@@ -1,12 +1,12 @@
-<h1> Fornecedor <%= @supplier.brand_name%> </h1>
+<h1> <%= Supplier.model_name.human %> <%= @supplier.brand_name%> </h1>
 <h2> <%= @supplier.corporate_name %> </h2>
 
 <dl>
 <dt> Documento: </dt>
 <dd> <%= @supplier.registration_number[0..1] %>.<%= @supplier.registration_number[2..4] %>.<%= @supplier.registration_number[5..7] %>/<%= @supplier.registration_number[8..11] %>-<%= @supplier.registration_number[12..13] %> </dd>
-<dt> Endereço: </dt>
+<dt> <%= Supplier.human_attribute_name(:full_address)%>: </dt>
 <dd> <%= @supplier.full_address %> - <%= @supplier.city %> - <%= @supplier.state %> </dd>
-<dt> E-mail: </dt>
+<dt> <%= Supplier.human_attribute_name(:email)%>: </dt>
 <dd> <%= @supplier.email %> </dd>
 </dl>
 
@@ -21,7 +21,7 @@
     <dl>
     <dt> Dimensão: </dt>
     <dd><%= pm.height %>cm x <%= pm.width %>cm x <%= pm.depth %>cm</dd>
-    <dt> SKU: </dt>
+    <dt> <%= ProductModel.human_attribute_name(:sku)%>: </dt>
     <dd><%= pm.sku %></dd>
     </dl>
   <% end %>

@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário vê detalhes de um galpão' do 
+  it 'e deve estar autenticado' do 
+    visit warehouse_url(1)
+  
+    expect(current_url).to eq new_user_session_url
+  end
+
   it 'e vê informações adicionais' do 
     user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
     Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,

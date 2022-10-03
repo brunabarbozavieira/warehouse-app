@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário edita um galpão' do 
+  it 'e deve estar autenticado' do 
+    visit edit_warehouse_url(1)
+  
+    expect(current_url).to eq new_user_session_url
+  end
+
   it 'a partir da página de detalhes' do 
     user = User.create!(email: 'joao@email.com', password: 'password', name: 'João')
     warehouse = Warehouse.create!(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000, address: 'Av do porto, 1000', cep: '20000000', description: 'Galpão do rio')

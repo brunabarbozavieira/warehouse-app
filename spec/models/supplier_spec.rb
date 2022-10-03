@@ -54,4 +54,12 @@ RSpec.describe Supplier, type: :model do
     end
   end
 end
+
+  describe '#description' do 
+    it 'exibe razão social e CNPJ' do 
+      s = Supplier.new(corporate_name: 'Spark Industries Brasil LTDA', registration_number: '37856483027154')
+
+      expect(s.description).to eq 'Spark Industries Brasil LTDA - CNPJ: 37.856.483/0271-54'
+    end
+  end
 end

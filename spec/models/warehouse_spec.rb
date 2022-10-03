@@ -105,4 +105,12 @@ RSpec.describe Warehouse, type: :model do
     end
   end
   end
+
+  describe 'full_description' do 
+    it 'exibe o código e o nome' do 
+      w = Warehouse.new(name: 'Galpão Cuiabá', code: 'CBA')
+
+      expect(w.full_description).to eq 'CBA - Galpão Cuiabá'
+    end
+  end
 end

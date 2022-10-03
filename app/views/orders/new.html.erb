@@ -1,0 +1,13 @@
+<h1> Registrar <%= Order.model_name.human %> </h1>
+
+<% if @order.errors.any? %>
+  <ul>
+    <p> Verifique os erros abaixo: </p>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<%= render 'form' %>
