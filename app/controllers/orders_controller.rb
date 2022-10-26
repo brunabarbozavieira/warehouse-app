@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order_and_check_user, only: [:show, :edit, :update]
+  before_action :set_order_and_check_user, only: [:show, :edit, :update, :delivered, :canceled]
 
   def index
     @orders = current_user.orders
@@ -43,6 +43,22 @@ class OrdersController < ApplicationController
   def search
     @code = params["query"]
     @orders = Order.where("code LIKE ?", "%#{@code}%")
+  end
+
+  def delivered
+    @order.delivered!
+
+    @order.order_items.each do |item|
+      item.quantity.times do 
+        StockProduct.create!(order: @order, product_model: item.product_model, warehouse: @order.warehouse)
+      end
+    end
+    redirect_to @order
+  end
+
+  def canceled
+    @order.canceled!
+    redirect_to @order
   end
 
   private

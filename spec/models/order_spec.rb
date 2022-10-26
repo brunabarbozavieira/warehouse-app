@@ -14,7 +14,7 @@ RSpec.describe Order, type: :model do
       user = User.create!(email: 'sergio@email.com', password: '12345678', name: 'Sergio')
       warehouse = Warehouse.create!(name: 'Galpão Maceio', code: 'MCZ', city: 'Maceio', area: 50_000, address: 'Av Atlântica, 50', cep: '80000000', description: 'Perto do Aeroporto')
       supplier = Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '37856483027154', full_address: 'Torre da Industria, 38', city: 'Teresina', state: 'PI', email: 'venda@spark.com')
-      order = Order.new(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: '2022-12-01')
+      order = Order.new(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now)
 
       expect(order.valid?).to eq true 
     end
@@ -60,7 +60,7 @@ RSpec.describe Order, type: :model do
       user = User.create!(email: 'sergio@email.com', password: '12345678', name: 'Sergio')
       warehouse = Warehouse.create!(name: 'Galpão Maceio', code: 'MCZ', city: 'Maceio', area: 50_000, address: 'Av Atlântica, 50', cep: '80000000', description: 'Perto do Aeroporto')
       supplier = Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '37856483027154', full_address: 'Torre da Industria, 38', city: 'Teresina', state: 'PI', email: 'venda@spark.com')
-      order = Order.new(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: '2022-12-01')
+      order = Order.new(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now)
 
       order.save!
 
@@ -72,13 +72,25 @@ RSpec.describe Order, type: :model do
       user = User.create!(email: 'sergio@email.com', password: '12345678', name: 'Sergio')
       warehouse = Warehouse.create!(name: 'Galpão Maceio', code: 'MCZ', city: 'Maceio', area: 50_000, address: 'Av Atlântica, 50', cep: '80000000', description: 'Perto do Aeroporto')
       supplier = Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '37856483027154', full_address: 'Torre da Industria, 38', city: 'Teresina', state: 'PI', email: 'venda@spark.com')
-      first_order = Order.create!(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: '2022-12-01')
-      second_order = Order.new(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: '2023-01-01')
+      first_order = Order.create!(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now)
+      second_order = Order.new(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now)
 
 
       second_order.save!
 
       expect(second_order.code).not_to eq first_order.code
+    end
+
+    it 'e não deve ser modificado' do 
+      user = User.create!(email: 'sergio@email.com', password: '12345678', name: 'Sergio')
+      warehouse = Warehouse.create!(name: 'Galpão Maceio', code: 'MCZ', city: 'Maceio', area: 50_000, address: 'Av Atlântica, 50', cep: '80000000', description: 'Perto do Aeroporto')
+      supplier = Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '37856483027154', full_address: 'Torre da Industria, 38', city: 'Teresina', state: 'PI', email: 'venda@spark.com')
+      order = Order.create!(user:user, warehouse:warehouse, supplier: supplier, estimated_delivery_date: 1.week.from_now)
+      original_code = order.code
+
+      order.update!(estimated_delivery_date: 1.month.from_now)
+
+      expect(order.code).to eq original_code
     end
   end
 end

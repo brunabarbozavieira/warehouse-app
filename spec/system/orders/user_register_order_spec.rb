@@ -29,9 +29,10 @@ describe 'Usuário cadastra um pedido' do
     expect(page).to have_content 'Galpão destino: MCZ - Galpão Maceio'  
     expect(page).to have_content 'Fornecedor: Spark Industries Brasil LTDA - CNPJ: 37.856.483/0271-54'
     expect(page).to have_content 'Data prevista de entrega: 20/12/2022'
+    expect(page).to have_content 'Usuário Responsável: Sergio - sergio@email.com'
+    expect(page).to have_content 'Situação do Pedido: Pendente'
     expect(page). not_to have_content 'ACME LTDA'
     expect(page). not_to have_content 'Galpão Rio'
-    expect(page).to have_content 'Usuário Responsável: Sergio - sergio@email.com'
   end
 
   it 'com data inválida' do 
