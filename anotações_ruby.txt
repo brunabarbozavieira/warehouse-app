@@ -1,0 +1,3 @@
+anotações RUBY:
+
+- Ruby é uma linguagem com fortes conceitos de OO aplicados.
