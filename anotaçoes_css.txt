@@ -2,3 +2,4 @@ Anotações CSS
 
 - CSS é difícil as vezes, especialmente para pessoas programadoras focadas em back-end.
 - CSS evoluiu muito e hoje tem vários recursos, Sass é muito legal.  
+- Os Seletores definem quais elementos um conjunto de regras CSS se aplica.
